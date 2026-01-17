@@ -10,9 +10,8 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    // componentTagger(), // Removed lovable-tagger
-    ].filter(Boolean),
+    // componentTagger foi removido; mantenha array limpo
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
