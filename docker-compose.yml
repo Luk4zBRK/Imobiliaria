@@ -1,0 +1,10 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./.env:/app/.env # Mount .env so it's available during build if we were using a dev server, but for prod build in Dockerfile it needs to be copied.
+                         # In the Dockerfile above, "COPY . ." copies the .env if it exists locally.
+                         # This volume mount is optional for the production image but good for clarity.
+    restart: always
