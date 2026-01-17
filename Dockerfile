@@ -1,33 +1,38 @@
-# Build Stage
-FROM node:20-alpine as build
-
+# Stage de build
+FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Copy package files
-COPY package.json package-lock.json ./
+# Copiar manifestos de pacotes
+COPY package.json pnpm-lock.yaml* yarn.lock* package-lock.json* ./
 
-# Install dependencies
-RUN npm ci
+# Instalar dependências respeitando o lockfile existente
+RUN \
+  if [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
+  elif [ -f yarn.lock ]; then yarn --frozen-lockfile; \
+  elif [ -f package-lock.json ]; then npm ci; \
+  else echo "Lockfile não encontrado." && exit 1; \
+  fi
 
-# Copy source code
+# Copiar código fonte e gerar build
 COPY . .
+RUN \
+  if [ -f pnpm-lock.yaml ]; then pnpm run build; \
+  elif [ -f yarn.lock ]; then yarn build; \
+  else npm run build; \
+  fi
 
-# Build the application
-# Note: VITE_ variables must be present at build time.
-# We expect .env to be copied or variables to be passed as build args.
-RUN npm run build
+# Stage de produção com Nginx
+FROM nginx:alpine AS runner
+WORKDIR /usr/share/nginx/html
 
-# Production Stage
-FROM nginx:alpine
+# Limpar arquivos padrão do Nginx
+RUN rm -rf ./*
 
-# Copy built assets from build stage
-COPY --from=build /app/dist /usr/share/nginx/html
+# Copiar build gerado pelo Vite
+COPY --from=builder /app/dist .
 
-# Copy nginx configuration
+# Configuração do Nginx para SPA
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port 80
 EXPOSE 80
-
-# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
