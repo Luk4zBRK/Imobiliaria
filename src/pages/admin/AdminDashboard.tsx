@@ -236,43 +236,43 @@ export default function AdminDashboard() {
       title: 'Total de Imóveis',
       value: stats.totalProperties,
       icon: Building2,
-      gradient: 'from-blue-500 to-blue-600',
-      bgGradient: 'from-blue-500/10 to-blue-600/5',
+      gradient: 'from-[hsl(var(--primary))] to-[hsl(var(--navy))]',
+      bgGradient: 'from-[hsl(var(--primary)/0.16)] to-[hsl(var(--navy)/0.08)]',
     },
     {
       title: 'Publicados',
       value: stats.publishedProperties,
       icon: Home,
-      gradient: 'from-emerald-500 to-emerald-600',
-      bgGradient: 'from-emerald-500/10 to-emerald-600/5',
+      gradient: 'from-[hsl(var(--gold))] to-[hsl(var(--gold-dark))]',
+      bgGradient: 'from-[hsl(var(--gold)/0.15)] to-[hsl(var(--gold-dark)/0.08)]',
     },
     {
       title: 'Rascunhos',
       value: stats.draftProperties,
       icon: FileText,
-      gradient: 'from-amber-500 to-orange-500',
-      bgGradient: 'from-amber-500/10 to-orange-500/5',
+      gradient: 'from-[hsl(var(--navy-light))] to-[hsl(var(--navy))]',
+      bgGradient: 'from-[hsl(var(--navy-light)/0.12)] to-[hsl(var(--navy)/0.08)]',
     },
     {
       title: 'Total de Leads',
       value: stats.totalLeads,
       icon: Users,
-      gradient: 'from-purple-500 to-purple-600',
-      bgGradient: 'from-purple-500/10 to-purple-600/5',
+      gradient: 'from-[hsl(var(--primary))] to-[hsl(var(--gold))]',
+      bgGradient: 'from-[hsl(var(--primary)/0.14)] to-[hsl(var(--gold)/0.12)]',
     },
     {
       title: 'Leads Novos',
       value: stats.newLeads,
       icon: MessageSquare,
-      gradient: 'from-rose-500 to-pink-500',
-      bgGradient: 'from-rose-500/10 to-pink-500/5',
+      gradient: 'from-[hsl(var(--gold))] to-[hsl(var(--primary))]',
+      bgGradient: 'from-[hsl(var(--gold)/0.15)] to-[hsl(var(--primary)/0.14)]',
     },
     {
       title: 'Categorias',
       value: stats.totalCategories,
       icon: TrendingUp,
-      gradient: 'from-cyan-500 to-teal-500',
-      bgGradient: 'from-cyan-500/10 to-teal-500/5',
+      gradient: 'from-[hsl(var(--navy-light))] to-[hsl(var(--primary))]',
+      bgGradient: 'from-[hsl(var(--navy-light)/0.12)] to-[hsl(var(--primary)/0.14)]',
     },
   ];
 
@@ -282,21 +282,21 @@ export default function AdminDashboard() {
       description: 'Cadastrar um novo imóvel no sistema',
       icon: Building2,
       href: '/admin/imoveis/novo',
-      gradient: 'from-blue-500 to-purple-600',
+      gradient: 'from-[hsl(var(--primary))] to-[hsl(var(--navy))]',
     },
     {
       title: 'Gerenciar Categorias',
       description: 'Adicionar ou editar categorias',
       icon: TrendingUp,
       href: '/admin/categorias',
-      gradient: 'from-emerald-500 to-teal-500',
+      gradient: 'from-[hsl(var(--gold))] to-[hsl(var(--navy-light))]',
     },
     {
       title: 'Ver Leads',
       description: 'Acompanhar contatos recebidos',
       icon: MessageSquare,
       href: '/admin/leads',
-      gradient: 'from-amber-500 to-orange-500',
+      gradient: 'from-[hsl(var(--primary))] to-[hsl(var(--gold-dark))]',
     },
   ];
 
@@ -386,7 +386,7 @@ export default function AdminDashboard() {
           <ExportButton />
           <Link
             to="/admin/imoveis/novo"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-primary-foreground btn-gold"
           >
             <Plus className="h-4 w-4" />
             Novo Imóvel
@@ -442,8 +442,8 @@ export default function AdminDashboard() {
               <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorLeads" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="hsl(43 74% 55%)" stopOpacity={0.28}/>
+                    <stop offset="95%" stopColor="hsl(43 74% 55%)" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
@@ -464,7 +464,7 @@ export default function AdminDashboard() {
                 <Area 
                   type="monotone" 
                   dataKey="leads" 
-                  stroke="#8b5cf6" 
+                  stroke="hsl(43 74% 55%)" 
                   strokeWidth={2}
                   fillOpacity={1} 
                   fill="url(#colorLeads)" 
@@ -495,8 +495,8 @@ export default function AdminDashboard() {
               <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorImoveis" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.9}/>
-                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.6}/>
+                    <stop offset="5%" stopColor="hsl(220 40% 20%)" stopOpacity={0.9}/>
+                    <stop offset="95%" stopColor="hsl(220 40% 20%)" stopOpacity={0.5}/>
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
@@ -542,11 +542,11 @@ export default function AdminDashboard() {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+              <div className="w-3 h-3 rounded-full bg-[hsl(var(--primary))]"></div>
               <span className="text-sm text-muted-foreground">Leads</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+              <div className="w-3 h-3 rounded-full bg-[hsl(var(--navy))]"></div>
               <span className="text-sm text-muted-foreground">Imóveis</span>
             </div>
             <div className="hidden sm:block">
@@ -562,12 +562,12 @@ export default function AdminDashboard() {
             <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorLeads2" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="hsl(43 74% 55%)" stopOpacity={0.28}/>
+                  <stop offset="95%" stopColor="hsl(43 74% 55%)" stopOpacity={0}/>
                 </linearGradient>
                 <linearGradient id="colorImoveis2" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="hsl(220 40% 20%)" stopOpacity={0.28}/>
+                  <stop offset="95%" stopColor="hsl(220 40% 20%)" stopOpacity={0}/>
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />

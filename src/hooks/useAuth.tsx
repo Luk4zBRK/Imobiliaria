@@ -28,15 +28,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const checkUserRole = async (userId: string) => {
     setRolesLoading(true);
-    const { data: roles } = await supabase
-      .from('user_roles')
-      .select('role')
-      .eq('user_id', userId);
 
-    if (roles) {
-      setIsAdmin(roles.some(r => r.role === 'admin'));
-      setIsEditor(roles.some(r => r.role === 'editor'));
+    // Usamos a função SQL is_admin_or_editor (SECURITY DEFINER) para evitar bloqueio de RLS na tabela user_roles
+    const { data, error } = await supabase.rpc('is_admin_or_editor', { _user_id: userId });
+
+    if (error) {
+      console.error('Erro ao verificar papel do usuário:', error.message);
+      setIsAdmin(false);
+      setIsEditor(false);
+    } else {
+      // A função retorna boolean indicando se é admin ou editor; mantemos distinção básica (ambos tratados como autorizados)
+      const isAllowed = Boolean(data);
+      setIsAdmin(isAllowed);
+      setIsEditor(isAllowed);
     }
+
     setRolesLoading(false);
   };
 
