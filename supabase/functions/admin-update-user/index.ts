@@ -1,3 +1,4 @@
+// @ts-nocheck
 // deno-lint-ignore-file no-explicit-any
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.43.4";
@@ -22,7 +23,7 @@ function jsonResponse(body: any, status = 200) {
   });
 }
 
-Deno.serve(async (req) => {
+Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
