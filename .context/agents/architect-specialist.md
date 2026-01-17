@@ -1,0 +1,95 @@
+---
+name: Architect Specialist
+description: Design overall system architecture and patterns
+status: unfilled
+generated: 2026-01-17
+---
+
+# Architect Specialist Agent Playbook
+
+## Mission
+Describe how the architect specialist agent supports the team and when to engage it.
+
+## Responsibilities
+- Design overall system architecture and patterns
+- Define technical standards and best practices
+- Evaluate and recommend technology choices
+- Plan system scalability and maintainability
+- Create architectural documentation and diagrams
+
+## Best Practices
+- Consider long-term maintainability and scalability
+- Balance technical debt with business requirements
+- Document architectural decisions and rationale
+- Promote code reusability and modularity
+- Stay updated on industry trends and technologies
+
+## Key Project Resources
+- Documentation index: [docs/README.md](../docs/README.md)
+- Agent handbook: [agents/README.md](./README.md)
+- Agent knowledge base: [AGENTS.md](../../AGENTS.md)
+- Contributor guide: [CONTRIBUTING.md](../../CONTRIBUTING.md)
+
+## Repository Starting Points
+- `public/` — TODO: Describe the purpose of this directory.
+- `src/` — TODO: Describe the purpose of this directory.
+- `supabase/` — TODO: Describe the purpose of this directory.
+
+## Key Files
+**Entry Points:**
+- [`supabase\functions\admin-update-user\index.ts`](supabase\functions\admin-update-user\index.ts)
+- [`src\main.tsx`](src\main.tsx)
+
+## Architecture Context
+
+### Config
+Configuration and constants
+- **Directories**: `.`, `src\hooks`
+- **Symbols**: 2 total
+- **Key exports**: [`useSiteSettings`](src\hooks\useSiteSettings.ts#L8)
+
+### Utils
+Shared utilities and helpers
+- **Directories**: `src\lib`
+- **Symbols**: 1 total
+- **Key exports**: [`cn`](src\lib\utils.ts#L4)
+
+### Repositories
+Data access and persistence
+- **Directories**: `src\data`
+- **Symbols**: 5 total
+- **Key exports**: [`Category`](src\data\mockData.ts#L9), [`PropertyImage`](src\data\mockData.ts#L17), [`Property`](src\data\mockData.ts#L24), [`Lead`](src\data\mockData.ts#L65), [`User`](src\data\mockData.ts#L77)
+
+### Components
+UI components and views
+- **Directories**: `src\components\ui`, `src\pages`, `src\components`, `src\pages\admin`, `src\components\layout`, `src\components\admin`
+- **Symbols**: 59 total
+- **Key exports**: [`WhatsAppButton`](src\components\WhatsAppButton.tsx#L8), [`SEO`](src\components\SEO.tsx#L13), [`CategoryCard`](src\components\CategoryCard.tsx#L21), [`AdminResetPasswordPage`](src\pages\admin\AdminResetPasswordPage.tsx#L20), [`AdminPropertiesPage`](src\pages\admin\AdminPropertiesPage.tsx#L44), [`AdminLeadsPage`](src\pages\admin\AdminLeadsPage.tsx#L38), [`Toaster`](src\components\ui\toaster.tsx#L4), [`TextareaProps`](src\components\ui\textarea.tsx#L5), [`ChartConfig`](src\components\ui\chart.tsx#L9), [`CalendarProps`](src\components\ui\calendar.tsx#L8), [`ButtonProps`](src\components\ui\button.tsx#L33), [`BadgeProps`](src\components\ui\badge.tsx#L23), [`Layout`](src\components\layout\Layout.tsx#L6), [`Footer`](src\components\layout\Footer.tsx#L5)
+## Key Symbols for This Agent
+- [`PropertyImage`](src\hooks\useProperties.ts#L4) (interface)
+- [`Property`](src\hooks\useProperties.ts#L11) (interface)
+- [`Category`](src\hooks\useCategories.ts#L4) (interface)
+- [`Category`](src\data\mockData.ts#L9) (interface)
+- [`PropertyImage`](src\data\mockData.ts#L17) (interface)
+
+## Documentation Touchpoints
+- [Documentation Index](../docs/README.md)
+- [Project Overview](../docs/project-overview.md)
+- [Architecture Notes](../docs/architecture.md)
+- [Development Workflow](../docs/development-workflow.md)
+- [Testing Strategy](../docs/testing-strategy.md)
+- [Glossary & Domain Concepts](../docs/glossary.md)
+- [Data Flow & Integrations](../docs/data-flow.md)
+- [Security & Compliance Notes](../docs/security.md)
+- [Tooling & Productivity Guide](../docs/tooling.md)
+
+## Collaboration Checklist
+
+1. Confirm assumptions with issue reporters or maintainers.
+2. Review open pull requests affecting this area.
+3. Update the relevant doc section listed above.
+4. Capture learnings back in [docs/README.md](../docs/README.md).
+
+## Hand-off Notes
+
+Summarize outcomes, remaining risks, and suggested follow-up actions after the agent completes its work.
