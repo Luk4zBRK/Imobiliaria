@@ -7,3 +7,7 @@
 - Atualizado Footer e ContactPage com endereço/telefone de Socorro-SP, removido link de WhatsApp na página de contato, email padrão alterado para erikazevedocorretor@gmail.com e embutido mapa do escritório via iframe do Google Maps.
 - Identidade visual do admin alinhada ao site (dourado/navy): cards, ações rápidas, botões, gradientes e sidebar atualizados. Logo do header adicionada ao sidebar com textos em branco e alinhamentos ajustados.
 - Favicon aponta agora para /FVCOM.jpg conforme solicitado.
+- Formulário de contato agora, após salvar lead, abre WhatsApp (5519992372866) com mensagem padrão e dados dos campos + origem.
+- App integra ScrollToTop para rolar ao topo a cada navegação.
+- CTA da AboutPage agora usa link do WhatsApp com número 5519992372866 e mensagem padrão.
+- Issue DNS/Cloudflare: erro 1000 (DNS to prohibited IP) em azevedocorretordeimoveis.com.br; revisar A records no Cloudflare removendo IP 212.85.13.212 e apontar domínio e www para o IP público correto do Easypanel (um único A, idealmente proxied se SSL/HTTPS via Cloudflare) e atualizar alvo do proxy do painel para hostname interno/IP válido.

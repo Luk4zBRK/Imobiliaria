@@ -105,8 +105,9 @@ export default function PropertyDetailPage() {
       : '';
 
   const whatsappMessage = encodeURIComponent(
-    `Olá! Tenho interesse no imóvel ${property.titulo} (código ${property.codigo_interno}). Podemos falar?`
+    'Olá Erik vim do site e gostaria de maiores informações'
   );
+  const whatsappLink = `https://api.whatsapp.com/send/?phone=5519992372866&text=${whatsappMessage}`;
 
   const copyCode = () => {
     navigator.clipboard.writeText(property.codigo_interno);
@@ -398,7 +399,7 @@ export default function PropertyDetailPage() {
                   {/* Contact Buttons */}
                   <div className="space-y-3">
                     <a
-                      href={`https://wa.me/${property.contato_whatsapp || ''}?text=${whatsappMessage}`}
+                      href={whatsappLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block"
@@ -409,14 +410,12 @@ export default function PropertyDetailPage() {
                       </Button>
                     </a>
 
-                    {property.contato_telefone && (
-                      <a href={`tel:${property.contato_telefone}`} className="block">
-                        <Button variant="outline" className="w-full gap-2">
-                          <Phone className="h-5 w-5" />
-                          Ligar Agora
-                        </Button>
-                      </a>
-                    )}
+                    <a href={whatsappLink} className="block" target="_blank" rel="noopener noreferrer">
+                      <Button variant="outline" className="w-full gap-2">
+                        <Phone className="h-5 w-5" />
+                        Ligar Agora
+                      </Button>
+                    </a>
 
                     <Button
                       variant="ghost"

@@ -83,22 +83,16 @@ export default function AboutPage() {
                 <h2 className="section-title mb-6">Nossa História</h2>
                 <div className="prose prose-lg text-muted-foreground space-y-4">
                   <p>
-                    A EA Corretor de Imóveis nasceu da paixão por conectar pessoas aos
-                    seus imóveis ideais. Fundada por Erik Azevedo, a empresa se
-                    consolidou como referência no mercado imobiliário de alto padrão
-                    em São Paulo e região.
+                    A EA Corretor de Imóveis nasceu da paixão por conectar pessoas aos seus imóveis ideais. Fundada por Erik Azevedo, a empresa se consolidou como referência no mercado imobiliário de Socorro-SP e região.
                   </p>
                   <p>
-                    Ao longo de mais de 15 anos, construímos uma trajetória marcada
-                    pela excelência no atendimento, conhecimento profundo do mercado e
-                    compromisso inabalável com a satisfação dos nossos clientes.
+                    Construímos uma trajetória marcada pela excelência no atendimento, conhecimento profundo do mercado e compromisso inabalável com a satisfação dos nossos clientes.
                   </p>
                   <p>
-                    Hoje, contamos com uma equipe especializada e uma carteira
-                    diversificada de imóveis, desde apartamentos de luxo até fazendas
-                    e propriedades comerciais. Nossa missão é simples: transformar a
-                    busca pelo imóvel perfeito em uma experiência prazerosa e
-                    bem-sucedida.
+                    Hoje, contamos com uma equipe especializada e uma carteira diversificada de imóveis, desde apartamentos de luxo até fazendas e propriedades comerciais.
+                  </p>
+                  <p>
+                    Nossa missão é simples: transformar a busca pelo imóvel perfeito em uma experiência prazerosa e bem-sucedida.
                   </p>
                 </div>
               </motion.div>
@@ -182,7 +176,7 @@ export default function AboutPage() {
               transition={{ delay: 0.2 }}
             >
               <a
-                href="https://wa.me/5511999999999"
+                href="https://api.whatsapp.com/send/?phone=5519992372866&text=Ol%C3%A1+Erik+vim+do+site+e+gostaria+de+maiores+informa%C3%A7%C3%B5es"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-lg btn-gold text-base font-medium"

@@ -52,19 +52,23 @@ export default function ContactPage() {
     try {
       contactSchema.parse(formData);
       setIsSubmitting(true);
+      const { nome, email, telefone, mensagem } = formData;
+      const whatsappMessage = `Olá Erik vim do site e gostaria de maiores informações\n\nNome: ${nome}\nEmail: ${email}\nTelefone: ${telefone}\nMensagem: ${mensagem}\nOrigem: Formulário de Contato`;
+      const whatsappUrl = `https://api.whatsapp.com/send/?phone=5519992372866&text=${encodeURIComponent(whatsappMessage)}`;
       
       // Save lead to database
       const { error } = await supabase.from('leads').insert({
-        nome: formData.nome,
-        email: formData.email,
-        telefone: formData.telefone,
-        mensagem: formData.mensagem,
+        nome,
+        email,
+        telefone,
+        mensagem,
         origem: 'contato',
         status: 'novo',
       });
 
       if (error) throw error;
-      
+
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
       toast.success('Mensagem enviada com sucesso! Entraremos em contato em breve.');
       setFormData({ nome: '', email: '', telefone: '', mensagem: '' });
     } catch (error) {

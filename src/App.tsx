@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ScrollToTop } from '@/components/ScrollToTop';
 import { HelmetProvider } from "react-helmet-async";
 import { Layout } from "@/components/layout/Layout";
 import { AuthProvider } from "@/hooks/useAuth";
@@ -13,6 +14,8 @@ import CategoriesPage from "./pages/CategoriesPage";
 import ContactPage from "./pages/ContactPage";
 import AdvertisePage from "./pages/AdvertisePage";
 import AboutPage from "./pages/AboutPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import TermsPage from "./pages/TermsPage";
 import NotFound from "./pages/NotFound";
 import AdminLoginPage from "./pages/admin/AdminLoginPage";
 import AdminResetPasswordPage from "./pages/admin/AdminResetPasswordPage";
@@ -35,6 +38,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               <Route element={<Layout />}>
                 <Route path="/" element={<HomePage />} />
@@ -44,6 +48,8 @@ const App = () => (
                 <Route path="/contato" element={<ContactPage />} />
                 <Route path="/anuncie" element={<AdvertisePage />} />
                 <Route path="/sobre" element={<AboutPage />} />
+                <Route path="/privacidade" element={<PrivacyPage />} />
+                <Route path="/termos" element={<TermsPage />} />
                 <Route path="/buscar" element={<PropertiesPage />} />
               </Route>
               <Route path="/admin/login" element={<AdminLoginPage />} />

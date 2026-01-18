@@ -46,6 +46,7 @@ export default function AdvertisePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [whatsappUrl, setWhatsappUrl] = useState('');
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -75,11 +76,17 @@ Descrição:
 ${formData.descricao}
       `.trim();
 
+      const { nome, email, telefone, categoria, cidade, bairro, descricao } = formData;
+      const whatsappMessage = `Olá Erik vim do site e gostaria de maiores informações sobre anúncio de imóvel\n\nNome: ${nome}\nEmail: ${email}\nTelefone: ${telefone}\nCategoria: ${categoria}\nCidade: ${cidade}\nBairro: ${bairro}\nDescrição: ${descricao}\nOrigem: Formulário Anuncie seu Imóvel`;
+      const whatsappLink = `https://api.whatsapp.com/send/?phone=5519992372866&text=${encodeURIComponent(whatsappMessage)}`;
+
+      setWhatsappUrl(whatsappLink);
+
       // Save lead to database
       const { error } = await supabase.from('leads').insert({
-        nome: formData.nome,
-        email: formData.email,
-        telefone: formData.telefone,
+        nome,
+        email,
+        telefone,
         mensagem: mensagem,
         origem: 'anuncie',
         status: 'novo',
@@ -87,8 +94,18 @@ ${formData.descricao}
 
       if (error) throw error;
 
+      window.open(whatsappLink, '_blank', 'noopener,noreferrer');
       setIsSuccess(true);
       toast.success('Solicitação enviada com sucesso!');
+      setFormData({
+        nome: '',
+        email: '',
+        telefone: '',
+        categoria: '',
+        cidade: '',
+        bairro: '',
+        descricao: '',
+      });
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors: Record<string, string> = {};
@@ -108,6 +125,12 @@ ${formData.descricao}
   };
 
   if (isSuccess) {
+    const fallbackWhatsappUrl =
+      whatsappUrl ||
+      `https://api.whatsapp.com/send/?phone=5519992372866&text=${encodeURIComponent(
+        'Olá Erik vim do site e gostaria de maiores informações sobre anúncio de imóvel'
+      )}`;
+
     return (
       <>
         <SEO
@@ -131,7 +154,7 @@ ${formData.descricao}
               seu imóvel e discutir as melhores estratégias de divulgação.
             </p>
             <a
-              href={`https://wa.me/${contatoWhatsapp}`}
+              href={fallbackWhatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
             >

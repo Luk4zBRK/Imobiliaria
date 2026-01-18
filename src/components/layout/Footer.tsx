@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Instagram, Facebook, Linkedin, Lock } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, Facebook, Lock } from 'lucide-react';
+import { useCategories } from '@/hooks/useCategories';
 import logo from '@/assets/logo.png';
 
 export function Footer() {
+  const { data: categories = [] } = useCategories();
+
   return (
     <footer className="bg-navy text-secondary-foreground">
       <div className="container-custom py-16">
@@ -15,7 +18,7 @@ export function Footer() {
             </p>
             <div className="flex gap-3 pt-2">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/azevedocorretorimoveis/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors"
@@ -23,20 +26,12 @@ export function Footer() {
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/Azevedocorretorerik"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors"
               >
                 <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors"
-              >
-                <Linkedin className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -72,23 +67,20 @@ export function Footer() {
               Categorias
             </h4>
             <ul className="space-y-3">
-              {[
-                { label: 'Casas', href: '/categorias/casa' },
-                { label: 'Apartamentos', href: '/categorias/apartamento' },
-                { label: 'Terrenos', href: '/categorias/terreno' },
-                { label: 'Comercial', href: '/categorias/comercial' },
-                { label: 'Rural', href: '/categorias/rural' },
-                { label: 'Temporada', href: '/categorias/temporada' },
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {categories.length > 0 ? (
+                categories.map((cat) => (
+                  <li key={cat.id}>
+                    <Link
+                      to={`/imoveis?categoria=${cat.slug}`}
+                      className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                    >
+                      {cat.nome}
+                    </Link>
+                  </li>
+                ))
+              ) : (
+                <li className="text-muted-foreground text-sm">Nenhuma categoria disponível no momento.</li>
+              )}
             </ul>
           </div>
 
