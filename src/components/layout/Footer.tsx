@@ -100,24 +100,24 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
                 <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <span>Av. Paulista, 1000, Sala 1501<br />São Paulo - SP, 01310-100</span>
+                <span>Rua Mal. Floriano Peixoto, 38 - Centro<br />Socorro - SP, 13960-000</span>
               </li>
               <li>
                 <a
-                  href="tel:+551132345678"
+                  href="tel:+5519992372866"
                   className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   <Phone className="h-5 w-5 text-primary shrink-0" />
-                  (11) 3234-5678
+                  (19) 99237-2866
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:contato@eacorretor.com.br"
+                  href="mailto:erikazevedocorretor@gmail.com"
                   className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   <Mail className="h-5 w-5 text-primary shrink-0" />
-                  contato@eacorretor.com.br
+                  erikazevedocorretor@gmail.com
                 </a>
               </li>
             </ul>

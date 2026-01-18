@@ -20,10 +20,12 @@ const contactSchema = z.object({
 
 export default function ContactPage() {
   const { getSetting } = useSiteSettings();
-  const contatoTelefone = getSetting('contato_telefone', '(11) 3234-5678');
-  const contatoWhatsapp = getSetting('contato_whatsapp', '5511999999999');
-  const contatoEmail = getSetting('contato_email', 'contato@eacorretor.com.br');
-  const contatoEndereco = getSetting('contato_endereco', 'São Paulo, SP');
+  const contatoTelefone = getSetting('contato_telefone', '(19) 99237-2866');
+  const contatoEmail = getSetting('contato_email', 'erikazevedocorretor@gmail.com');
+  const contatoEndereco = getSetting(
+    'contato_endereco',
+    'Rua Mal. Floriano Peixoto, 38 - Centro, Socorro - SP, 13960-000'
+  );
   const contatoHorario = getSetting('contato_horario', 'Seg a Sex: 9h às 18h | Sáb: 9h às 13h');
 
   const [formData, setFormData] = useState({
@@ -81,15 +83,6 @@ export default function ContactPage() {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  // Format WhatsApp number for display
-  const formatWhatsappDisplay = (whatsapp: string) => {
-    const digits = whatsapp.replace(/\D/g, '');
-    if (digits.length >= 13) {
-      return `(${digits.slice(2, 4)}) ${digits.slice(4, 9)}-${digits.slice(9, 13)}`;
-    }
-    return whatsapp;
   };
 
   return (
@@ -162,15 +155,6 @@ export default function ContactPage() {
                       >
                         {contatoTelefone}
                       </a>
-                      <br />
-                      <a
-                        href={`https://wa.me/${contatoWhatsapp}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {formatWhatsappDisplay(contatoWhatsapp)} (WhatsApp)
-                      </a>
                     </div>
                   </div>
 
@@ -190,9 +174,16 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Map Placeholder */}
-                <div className="mt-8 aspect-video bg-muted rounded-xl flex items-center justify-center">
-                  <p className="text-muted-foreground">Mapa do escritório</p>
+                {/* Mapa do Escritório */}
+                <div className="mt-8 aspect-video rounded-xl overflow-hidden border border-border">
+                  <iframe
+                    title="Mapa do escritório"
+                    src="https://www.google.com/maps?q=AZEVEDO+Corretor+de+Im%C3%B3veis&output=embed"
+                    className="w-full h-full"
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
                 </div>
               </motion.div>
 
