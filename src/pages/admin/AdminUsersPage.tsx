@@ -35,6 +35,7 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { z } from 'zod';
 
 interface UserWithRole {
   id: string;
@@ -50,6 +51,19 @@ export default function AdminUsersPage() {
   const [users, setUsers] = useState<UserWithRole[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+
+  const createUserSchema = z
+    .object({
+      nome: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
+      email: z.string().email('Email inválido'),
+      senha: z.string().min(6, 'Senha deve ter pelo menos 6 caracteres'),
+      confirmarSenha: z.string().min(6, 'Confirmação deve ter pelo menos 6 caracteres'),
+      role: z.enum(['admin', 'editor']),
+    })
+    .refine((data) => data.senha === data.confirmarSenha, {
+      path: ['confirmarSenha'],
+      message: 'As senhas não conferem',
+    });
 
   const fetchUsers = useCallback(async () => {
     setLoading(true);
@@ -129,22 +143,20 @@ export default function AdminUsersPage() {
   }, [isAdmin, navigate, fetchUsers]);
 
   const handleCreate = async () => {
-    if (!createForm.nome || !createForm.email || !createForm.senha) {
-      toast.error('Preencha nome, email e senha');
-      return;
-    }
-    if (createForm.senha !== createForm.confirmarSenha) {
-      toast.error('As senhas não conferem');
+    const parsed = createUserSchema.safeParse(createForm);
+    if (!parsed.success) {
+      const firstIssue = parsed.error.issues[0];
+      toast.error(firstIssue?.message || 'Dados inválidos. Verifique os campos.');
       return;
     }
 
     setSaving(true);
     try {
       const { data, error } = await supabase.auth.signUp({
-        email: createForm.email,
-        password: createForm.senha,
+        email: parsed.data.email,
+        password: parsed.data.senha,
         options: {
-          data: { nome: createForm.nome },
+          data: { nome: parsed.data.nome },
           emailRedirectTo: `${window.location.origin}/`,
         },
       });
@@ -156,8 +168,8 @@ export default function AdminUsersPage() {
 
       const { error: profileError } = await supabase.from('profiles').insert({
         user_id: userId,
-        nome: createForm.nome,
-        email: createForm.email,
+        nome: parsed.data.nome,
+        email: parsed.data.email,
       });
 
       if (profileError) throw profileError;
@@ -166,7 +178,7 @@ export default function AdminUsersPage() {
       await supabase.from('user_roles').delete().eq('user_id', userId);
       const { error: roleError } = await supabase.from('user_roles').insert({
         user_id: userId,
-        role: createForm.role as 'admin' | 'editor',
+        role: parsed.data.role,
       });
 
       if (roleError) throw roleError;
