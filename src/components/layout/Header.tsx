@@ -97,7 +97,10 @@ export function Header() {
               ))}
               <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
                 <Link to="/buscar" onClick={() => setIsMenuOpen(false)}>
-                  <Button variant="outline" className="w-full gap-2 border-white/20 text-white hover:bg-white/10">
+                  <Button
+                    variant="outline"
+                    className="w-full gap-2 border-white/20 text-white bg-transparent hover:bg-transparent"
+                  >
                     <Search className="h-4 w-4" />
                     Buscar Imóvel
                   </Button>

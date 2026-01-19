@@ -60,7 +60,7 @@ export default function HomePage() {
               transition={{ duration: 0.5 }}
             >
               <Shield className="h-4 w-4" />
-              Corretor de Imóveis de Alto Padrão
+              Corretor de Imóveis
             </motion.span>
 
             <motion.h1
