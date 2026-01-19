@@ -68,7 +68,7 @@ export function Footer() {
             </h4>
             <ul className="space-y-3">
               {categories.length > 0 ? (
-                categories.map((cat) => (
+                categories.slice(0, 5).map((cat) => (
                   <li key={cat.id}>
                     <Link
                       to={`/imoveis?categoria=${cat.slug}`}

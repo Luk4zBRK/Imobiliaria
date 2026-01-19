@@ -182,7 +182,7 @@ export default function ContactPage() {
                 <div className="mt-8 aspect-video rounded-xl overflow-hidden border border-border">
                   <iframe
                     title="Mapa do escritório"
-                    src="https://www.google.com/maps?q=AZEVEDO+Corretor+de+Im%C3%B3veis&output=embed"
+                    src="https://www.google.com/maps?q=Rua+Mal.+Floriano+Peixoto,+38+-+Centro,+Socorro+-+SP,+13960-000&output=embed"
                     className="w-full h-full"
                     loading="lazy"
                     allowFullScreen

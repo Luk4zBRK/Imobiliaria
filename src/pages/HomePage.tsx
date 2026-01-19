@@ -241,7 +241,11 @@ export default function HomePage() {
                   Anunciar meu Imóvel
                 </Button>
               </Link>
-              <a href={`https://wa.me/${contatoWhatsapp}`} target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://api.whatsapp.com/send/?phone=5519992372866&text=Ol%C3%A1+Erik+vim+do+site+e+gostaria+de+maiores+informa%C3%A7%C3%B5es"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button variant="outline" className="text-base px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                   Falar pelo WhatsApp
                 </Button>
