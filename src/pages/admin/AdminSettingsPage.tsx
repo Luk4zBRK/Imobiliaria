@@ -137,6 +137,28 @@ export default function AdminSettingsPage() {
     );
   }
 
+  if (settings.length === 0) {
+    return (
+      <div className="space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="font-display text-3xl font-bold text-foreground">Configurações do Site</h1>
+            <p className="text-muted-foreground mt-1">Nenhuma configuração encontrada.</p>
+          </div>
+          <Button onClick={fetchSettings} variant="outline" className="gap-2">
+            <Loader2 className="h-4 w-4" />
+            Recarregar
+          </Button>
+        </div>
+        <div className="bg-card border border-border rounded-xl p-6">
+          <p className="text-muted-foreground">
+            Verifique se a tabela <span className="font-semibold">site_settings</span> possui registros e se o usuário tem permissão de leitura (is_admin_or_editor). Se os dados já existem, clique em "Recarregar".
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
