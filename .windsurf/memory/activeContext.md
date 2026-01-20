@@ -15,3 +15,4 @@
 20→19/01: adicionada migração supabase 20260119070600_allow_admin_delete_profiles.sql para liberar DELETE em public.profiles apenas para admins, habilitando botão de excluir usuário no painel.
 21→19/01: Página de Configurações (/admin/configuracoes) agora trata estado vazio: exibe aviso “Nenhuma configuração encontrada” e botão Recarregar, orientando verificar registros/políticas (site_settings + is_admin_or_editor). Evita Tabs sem dados.
 22→Próximo passo: se continuar vazio, checar se tabela site_settings tem registros e se o usuário tem role admin/editor.
+23→20/01: git pull origin main executado; branch main já estava atualizada com o remoto.
